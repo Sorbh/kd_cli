@@ -1,0 +1,28 @@
+name: kd_cli
+description: This is a CLI to process the test and coverage report.
+publish_to: "https://unicodelabs.in"
+version: 0.0.1
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  args: ^2.3.2
+  # melos: ^2.9.0
+  async: ^2.10.0
+  checked_yaml: ^2.0.2
+  glob: ^2.1.1
+  lcov_dart: ^7.0.0
+  mason_logger: ^0.2.5
+  path: ^1.8.3
+  pool: ^1.5.1
+  pubspec: ^2.3.0
+  universal_io: ^2.0.4
+
+dev_dependencies:
+  dart_flutter_team_lints: ^1.0.0
+  mocktail: ^0.3.0
+  test: ^1.22.0
+
+executables:
+  kd:
