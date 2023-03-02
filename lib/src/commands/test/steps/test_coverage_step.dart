@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 part of '../test_command.dart';
 
 // ignore: avoid_classes_with_only_static_members
@@ -27,10 +29,12 @@ abstract class TestCoverageSteps {
         package, testResults.stdout.toString());
 
     if (!testReport.haveFailedTest) {
+      result.addMessage(StepResultMessage('All Test 🎉', MessageType.short));
       result.addMessage(StepResultMessage(
           '✅ Package ${package.name} passed(${testReport.passedTestCount}) all the test',
           MessageType.normal));
     } else {
+      result.addMessage(StepResultMessage('Test Failed 🐛', MessageType.short));
       result.addMessage(StepResultMessage(
           '❌ Package ${package.name} have some failed(${testReport.failedTestCount})/skipped(${testReport.skippedTestCount}) test',
           MessageType.failure));
@@ -50,10 +54,14 @@ abstract class TestCoverageSteps {
     final coveragePre = await CodeCoverageUtils.checkLcovReport(package);
 
     if (coveragePre > coverageLimit) {
+      result.addMessage(
+          StepResultMessage('Coverage $coveragePre 🎉', MessageType.short));
       result1.addMessage(StepResultMessage(
           '✅ Package ${package.name} have total coverage -> ${green.wrap('$coveragePre')}',
           MessageType.normal));
     } else {
+      result.addMessage(
+          StepResultMessage('Coverage $coveragePre 🐛', MessageType.short));
       result1.addMessage(StepResultMessage(
           '❌ package ${package.name} have total coverage -> ${red.wrap('$coveragePre')} but minimum $coverageLimit is required',
           MessageType.failure));

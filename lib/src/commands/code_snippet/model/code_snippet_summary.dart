@@ -14,36 +14,28 @@ class CodeSnippetSummary {
     results.addAll(result);
   }
 
-  bool get hasErrors {
-    return results.any((result) => result.hasError);
-  }
+  bool get hasErrors => results.any((result) => result.hasError);
 
-  List<CodeSnippetStepResult> get errors {
-    return results.where((result) => result.hasError).toList();
-  }
+  List<CodeSnippetStepResult> get errors =>
+      results.where((result) => result.hasError).toList();
 
-  bool get hasWarnings {
-    return results.any((result) => result.hasWarnings);
-  }
+  bool get hasWarnings => results.any((result) => result.hasWarnings);
 
-  bool get hasMetaErrors {
-    return results.any((result) =>
-        result.hasError && result.stepType == CodeSnippetStepType.extractMeta);
-  }
+  bool get hasMetaErrors => results.any((result) =>
+      result.hasError && result.stepType == CodeSnippetStepType.extractMeta);
 
-  List<CodeSnippetStepResult> get metaErrors {
-    return results
-        .where((result) =>
-            result.hasError &&
-            result.stepType == CodeSnippetStepType.extractMeta)
-        .toList();
-  }
+  List<CodeSnippetStepResult> get metaErrors => results
+      .where((result) =>
+          result.hasError && result.stepType == CodeSnippetStepType.extractMeta)
+      .toList();
 
+  // ignore: prefer_expression_function_bodies
   bool get hasMetaValidationErrors {
     return results.any((result) =>
         result.hasError && result.stepType == CodeSnippetStepType.validateMeta);
   }
 
+  // ignore: prefer_expression_function_bodies
   List<CodeSnippetStepResult> get metaValidationErrors {
     return results
         .where((result) =>

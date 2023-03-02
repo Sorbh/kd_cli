@@ -14,23 +14,19 @@ class PackageTestSummary {
     results.addAll(result);
   }
 
-  bool get hasErrors {
-    return results.any((result) => result.hasError);
-  }
+  bool get hasErrors => results.any((result) => result.hasError);
 
-  bool get hasWarnings {
-    return results.any((result) => result.hasWarnings);
-  }
+  bool get hasWarnings => results.any((result) => result.hasWarnings);
 
-  bool get hasCoverageErrors {
-    return results.any((result) =>
-        result.hasError && result.stepType == TestStepType.codeCoverage);
-  }
+  bool get hasCoverageErrors => results.any((result) =>
+      result.hasError && result.stepType == TestStepType.codeCoverage);
 
-  bool get hasTestErrors {
-    return results.any(
-        (result) => result.hasError && result.stepType == TestStepType.test);
-  }
+  bool get hasTestErrors => results
+      .any((result) => result.hasError && result.stepType == TestStepType.test);
+
+  //function get all the short step result
+  String get shortResult =>
+      results.map((e) => e.shortResult).toList().join(' | ');
 
   List<TestStepType> get failedSteps {
     final list = <TestStepType>[];

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls, lines_longer_than_80_chars
+
 part of '../code_snippet_command.dart';
 
 abstract class ValidateMetadataStep {
@@ -29,11 +31,11 @@ abstract class ValidateMetadataStep {
           '❌ CodeSnippet duplicacy found', MessageType.failure));
       result.addMessage(StepResultMessage(
           'Following Codesnippet have issue', MessageType.failure));
-      duplicateCodeSnippet.forEach((element) {
+      for (var element in duplicateCodeSnippet) {
         result.addMessage(StepResultMessage(
             '\t🦠 ${red.wrap(element.map((e) => e.name).toList().join(','))} issue with ${element.first.haveIssueWithProperties(element[1]).join(',')}',
             MessageType.failure));
-      });
+      }
     }
 
     return result;

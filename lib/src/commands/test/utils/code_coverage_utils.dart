@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 part of '../test_command.dart';
 
 abstract class CodeCoverageUtils {
@@ -75,13 +77,13 @@ abstract class CodeCoverageUtils {
   static Future<void> appendToMasterFile(PackageInfo packageInfo,
       {String cwd = '.', bool deletelcov = true}) async {
     final file = File(join(cwd, 'coverage_master', 'lcov.info'));
-    file.createSync(recursive: true, exclusive: false);
+    file.createSync(recursive: true);
 
     final lcovFile = File(join(packageInfo.parent, 'coverage', 'lcov.info'));
-    var lcovContent = lcovFile.readAsStringSync();
+    final lcovContent = lcovFile.readAsStringSync();
 
     file.writeAsStringSync(
-        lcovContent.replaceAll("SF:", "SF:${packageInfo.parent}/"),
+        lcovContent.replaceAll('SF:', 'SF:${packageInfo.parent}/'),
         mode: FileMode.append);
 
     //Delete Origin lcov fle
@@ -93,14 +95,15 @@ abstract class CodeCoverageUtils {
     final lcovFile = File(join(cwd, 'coverage', 'lcov.info'));
     lcovFile.createSync(recursive: true);
     masterLcovFile.copySync(join(cwd, 'coverage', 'lcov.info'));
-    if (masterLcovFile.existsSync())
+    if (masterLcovFile.existsSync()) {
       masterLcovFile.parent.deleteSync(recursive: true);
+    }
   }
 
   static String _normalizeImportSlashes(String filePath) {
     if (Platform.isWindows) {
       // Replace backslashes with forward slashes which is what dart uses for import statements.
-      return filePath.replaceAll(r'\', r'/');
+      return filePath.replaceAll(r'\', '/');
     } else {
       return filePath;
     }
@@ -160,7 +163,6 @@ abstract class CodeCoverageUtils {
     if (await file.exists() && await file.length() != 0) {
       final coverage = await Lcov.generateSummary(
         cwd: file.parent.path,
-        infoFileDir: 'lcov.info',
       );
 
       final regexp = RegExp(r'\d*[,]?\d*\.\d+[%]?');

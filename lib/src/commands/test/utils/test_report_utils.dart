@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_dynamic_calls
+// ignore_for_file: avoid_dynamic_calls, unnecessary_overrides
 
 import 'dart:convert';
 import 'dart:io';
@@ -177,8 +177,8 @@ class TestModel {
   }
 
   @override
-  // ignore: prefer_expression_function_bodies
-  String toString() {
-    return 'TestModel { $id $state $name $error $message }';
-  }
+  String toString() => 'TestModel { $id $state $name $error $message }';
+
+  @override
+  int get hashCode => super.hashCode;
 }

@@ -10,8 +10,8 @@ class StepResultMessage {
 
 enum MessageType {
   normal,
+  short,
   failure,
   warning,
-  // output,
   outputVerbose,
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: hash_and_equals
+
 class CodeSnippet {
   final String name;
   final String filePath;
@@ -40,8 +42,9 @@ class CodeSnippet {
       if (metaDataMap[MetaData.filename.name] ==
           other.metaDataMap[MetaData.filename.name]) issue.add('File name');
       if (metaDataMap[MetaData.description.name] ==
-          other.metaDataMap[MetaData.description.name])
+          other.metaDataMap[MetaData.description.name]) {
         issue.add('Description');
+      }
 
       return issue;
     }

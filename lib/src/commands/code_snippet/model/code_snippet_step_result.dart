@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_expression_function_bodies, lines_longer_than_80_chars
+
 import '../../../models/step_result_message.dart';
 
 class CodeSnippetStepResult {
@@ -14,10 +16,8 @@ class CodeSnippetStepResult {
         .any((message) => message.messageType == MessageType.warning);
   }
 
-  bool get hasError {
-    return resultMessages
-        .any((message) => message.messageType == MessageType.failure);
-  }
+  bool get hasError => resultMessages
+      .any((message) => message.messageType == MessageType.failure);
 
   @override
   String toString() =>

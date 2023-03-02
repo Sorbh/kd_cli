@@ -28,7 +28,7 @@ Global options:
 Available commands:
   codesnippet   kd codesnippet 
                 Run the code snipper command.
-  test          kd test <project-name>
+  test          kd test <package-name>
                 Run the test or test coverage command. Run this command inside the  repo and 
 
 Run "kd help <command>" for more information about a command.

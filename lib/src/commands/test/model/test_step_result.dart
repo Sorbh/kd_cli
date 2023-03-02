@@ -9,15 +9,17 @@ class TestStepResult {
     resultMessages.add(message);
   }
 
-  bool get hasWarnings {
-    return resultMessages
-        .any((message) => message.messageType == MessageType.warning);
-  }
+  bool get hasWarnings => resultMessages
+      .any((message) => message.messageType == MessageType.warning);
 
-  bool get hasError {
-    return resultMessages
-        .any((message) => message.messageType == MessageType.failure);
-  }
+  bool get hasError => resultMessages
+      .any((message) => message.messageType == MessageType.failure);
+
+  String get shortResult => resultMessages
+      .where((e) => e.messageType == MessageType.short)
+      .map((e) => e.message)
+      .toList()
+      .join(' | ');
 
   @override
   String toString() =>

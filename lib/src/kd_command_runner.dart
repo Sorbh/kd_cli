@@ -1,9 +1,8 @@
 import 'package:args/command_runner.dart';
 import 'package:kd_cli/src/commands/code_snippet/code_snippet_command.dart';
+import 'package:kd_cli/src/commands/packages/packages_command.dart';
 import 'package:kd_cli/src/commands/test/test_command.dart';
 import 'package:mason_logger/mason_logger.dart';
-
-import 'utils/kd_cli_logger.dart';
 
 /// {@template msi_command_runner}
 /// A [CommandRunner] for the Kd CLI.
@@ -14,11 +13,12 @@ class KdCommandRunner extends CommandRunner<int> {
 
   final Logger _logger;
   KdCommandRunner({
-    KdCliLogger? logger,
-  })  : _logger = logger ?? KdCliLogger(),
+    Logger? logger,
+  })  : _logger = logger ?? Logger(),
         super('kd', '🐳 A Kd Command Line Interface') {
     addCommand(TestCommand());
     addCommand(CodeSnippetCommand());
+    addCommand(PackagesCommand());
   }
 
   @override

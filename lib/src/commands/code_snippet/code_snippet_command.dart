@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:async';
 import 'dart:convert';
 
@@ -6,7 +8,6 @@ import 'package:kd_cli/src/commands/code_snippet/model/code_snippet_step_result.
 import 'package:kd_cli/src/commands/code_snippet/model/code_snippet_summary.dart';
 import 'package:kd_cli/src/models/code_snippet.dart';
 import 'package:kd_cli/src/models/step_result_message.dart';
-import 'package:kd_cli/src/utils/kd_cli_logger.dart';
 import 'package:kd_cli/src/utils/workspace_util.dart';
 import 'package:mason_logger/mason_logger.dart';
 
@@ -15,22 +16,10 @@ part 'step/validating_metadata_step.dart';
 
 class CodeSnippetCommand extends Command<int> {
   CodeSnippetCommand({
-    KdCliLogger? logger,
-  }) : logger = logger ?? KdCliLogger() {
-    // argParser
-    //   ..addFlag(TestArguments.all,
-    //       defaultsTo: true,
-    //       negatable: true,
-    //       help:
-    //           'Set this flag to enable option to choose the package before testing')
-    //   ..addFlag(TestArguments.clean,
-    //       defaultsTo: false,
-    //       negatable: true,
-    //       abbr: 'c',
-    //       help: 'Clean all the old icov.info file');
-  }
+    Logger? logger,
+  }) : logger = logger ?? Logger();
 
-  final KdCliLogger logger;
+  final Logger logger;
 
   @override
   String get description => 'Run the code snipper command.';
@@ -46,9 +35,9 @@ class CodeSnippetCommand extends Command<int> {
 
   @override
   Future<int> run() async {
-    bool verbose = false;
-    Progress progressLog =
-        logger.progress('Scanning WorkSpece for CodeSnippet');
+    const verbose = false;
+    Progress progressLog;
+    progressLog = logger.progress('Scanning WorkSpece for CodeSnippet');
 
     final codeSnippets = await WorkspaceUtil.findCodeSnippetInWorkSpace();
 
@@ -78,14 +67,14 @@ class CodeSnippetCommand extends Command<int> {
     logger.success('\nCode Snippet Short Summery');
 
     if (codeSnippetSummary.hasErrors) {
-      logger.writeLine('');
+      logger.info('');
       logger.err('❌ Issue found with Code Snippet ❌');
       logger.info(
           '❌ Following have steps have error -> ${codeSnippetSummary.failedSteps.join(',')}');
-      codeSnippetSummary.errors.forEach((step) {
-        logger.writeLine('');
+      for (var step in codeSnippetSummary.errors) {
+        logger.info('');
         _logResultMessages(step, verbose);
-      });
+      }
     } else {
       logger
           .success('All Good with the Code Snippet, All Step passed 👏🏻👏🏻');
@@ -99,20 +88,20 @@ class CodeSnippetCommand extends Command<int> {
     for (final resultMessage in stepResults.resultMessages) {
       switch (resultMessage.messageType) {
         case MessageType.normal:
-          logger.writeLine(resultMessage.message);
+          logger.info(resultMessage.message);
           break;
         case MessageType.warning:
-          logger.writeLine('⚠️ ${resultMessage.message}');
+          logger.warn('⚠️ ${resultMessage.message}');
           break;
         case MessageType.failure:
-          logger.writeLine(resultMessage.message);
+          logger.err(resultMessage.message);
           break;
         case MessageType.outputVerbose:
-          if (verbose) logger.writeLine(resultMessage.message);
+          if (verbose) logger.detail(resultMessage.message);
           break;
 
         default:
-          if (verbose) logger.writeLine(resultMessage.message);
+          if (verbose) logger.info(resultMessage.message);
           break;
       }
     }

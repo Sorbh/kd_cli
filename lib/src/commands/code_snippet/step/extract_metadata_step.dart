@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls, lines_longer_than_80_chars
+
 part of '../code_snippet_command.dart';
 
 abstract class ExtractMetadataStep {
@@ -17,12 +19,12 @@ abstract class ExtractMetadataStep {
         final metaString = metaRegexMatch!.group(1).toString();
         final codeString = metaRegexMatch.group(3).toString();
 
-        LineSplitter().convert(metaString).forEach((line) {
+        const LineSplitter().convert(metaString).forEach((line) {
           if (line.contains(':')) {
-            final component = line.split(":");
-            String key = component[0].trim();
+            final component = line.split(':');
+            final key = component[0].trim();
             component.removeAt(0);
-            String value = component.join(':').trim();
+            final value = component.join(':').trim();
             codeSnippet.metaDataMap[key] = value;
           }
         });

@@ -1,6 +1,6 @@
 name: kd_cli
 description: This is a CLI to process the test and coverage report.
-publish_to: "https://unicodelabs.in"
+repository: "https://github.com/Sorbh/kd_cli"
 version: 0.0.1
 
 environment:

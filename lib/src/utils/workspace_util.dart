@@ -29,7 +29,7 @@ abstract class WorkspaceUtil {
             pluginSymlinksGlob.matches(value.path) ||
             symlinksPluginsGlob.matches(value.path)))
         .toList()) {
-      var pubSpec = await PubSpec.load(entity.parent);
+      final pubSpec = await PubSpec.load(entity.parent);
       allPackages
           .add(PackageInfo(pubSpec.name!, entity.path, entity.parent.path));
     }

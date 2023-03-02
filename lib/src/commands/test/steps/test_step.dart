@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 part of '../test_command.dart';
 
 // ignore: avoid_classes_with_only_static_members
@@ -24,10 +26,12 @@ abstract class TestSteps {
         package, testResults.stdout.toString());
 
     if (!testReport.haveFailedTest) {
+      result.addMessage(StepResultMessage('All Test 🎉', MessageType.short));
       result.addMessage(StepResultMessage(
           '✅ Package ${package.name} passed(${testReport.passedTestCount}) all the test',
           MessageType.normal));
     } else {
+      result.addMessage(StepResultMessage('Test Failed 🐛', MessageType.short));
       result.addMessage(StepResultMessage(
           '❌ Package ${package.name} have some failed(${testReport.failedTestCount})/skipped(${testReport.skippedTestCount}) test',
           MessageType.failure));

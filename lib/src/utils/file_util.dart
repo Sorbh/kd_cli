@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:io';
 
 import 'package:pool/pool.dart';
@@ -18,5 +20,6 @@ abstract class FileUtil {
   static bool fileExists(String file) => File(file).existsSync();
 
   /// Reads the contents of the text file [file].
-  static Future<String> readTextFileAsync(String file) => _descriptorPool.withResource(() => File(file).readAsString());
+  static Future<String> readTextFileAsync(String file) =>
+      _descriptorPool.withResource(() => File(file).readAsString());
 }
