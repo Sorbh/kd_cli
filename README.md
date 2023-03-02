@@ -3,6 +3,8 @@ The Kd CLI was created to generate report for test and code-snippets.
 Developed with 💙 by [Sorbh](https://github.com/sorbh)
 
 ## Quick Start 🚀
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSorbh%2Fkd_cli.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FSorbh%2Fkd_cli?ref=badge_shield)
+
 
 ### Installing 🧑‍💻
 
@@ -33,3 +35,7 @@ Available commands:
 
 Run "kd help <command>" for more information about a command.
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSorbh%2Fkd_cli.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FSorbh%2Fkd_cli?ref=badge_large)
